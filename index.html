@@ -21,12 +21,26 @@
     <![endif]-->
 	<script type="text/javascript">
   		function send() {
-   		 var link = 'mailto:rupesh.bansal92@gmail.com?subject=Message from '
-         	    +document.getElementById('user-name').value
-			+'&Id='++document.getElementById('user-email').value
-        	     	+'&body='+document.getElementById('user-message').value;
-        	     	+'&website='+document.getElementById('user-website').value;
-   	 window.location.href = link;
+	   	 	return fetch('https://xcyzykra9l.execute-api.ap-south-1.amazonaws.com/default/ContactFormLambda', {
+			    method: 'POST',
+			    body: JSON.stringify({
+				      "email": document.getElementById('user-email').value,
+				      "subject": "Website Enquiry",
+				      "message": document.getElementById('user-message').value
+				    }),
+			    headers: {
+			      'Content-Type': 'application/json',
+        		  'Accept': 'application/json',
+			      "x-api-key": "pd0JlFMRMu4nEBT6AalAj4Cz0UyS7rQR1MGofGtM"
+			    }
+  			})
+  			.then(response => response.json())
+	 //   	 	.then(data => {
+	 //   	 		console.log(data);
+	 //   	 	})
+	 //   	 	.catch((error) => {
+  // 				console.error('Error:', error);
+		// });
 	}
 	</script>
 
@@ -187,13 +201,7 @@
         <div class="row">
           <div class="col-lg-4">
             <p>Send us a message, or contact us from the address below</p>
-
-
             <address>
-
-
-
-
               <strong>Shiva Logistics</strong></br>
               422, The Grand Plaza</br>
               Near Palm Avenue</br>
@@ -261,7 +269,7 @@
         </ul>
 
         <p>&copy; 
-Copyright © 2015 Shiva Transwell Cargo Services. All rights reserved.
+Copyright © 2022 Shiva Transwell Cargo Services. All rights reserved.
 </p>
 
       </div><!-- end Container-->
